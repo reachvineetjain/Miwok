@@ -17,6 +17,8 @@ package com.example.android.miwok;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -30,41 +32,53 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
-        TextView numberView = (TextView)findViewById(R.id.numbers);
-        numberView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent numberIntent = new Intent(MainActivity.this, NumbersActivity.class);
-                startActivity(numberIntent);
-            }
-        });
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        TextView familyView = (TextView)findViewById(R.id.family);
-        familyView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent familyIntent = new Intent(MainActivity.this, FamilyActivity.class);
-                startActivity(familyIntent);
-            }
-        });
+        // Create an adapter that knows which fragment should be shown on each page
+        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager());
 
-        TextView colorView = (TextView)findViewById(R.id.colors);
-        colorView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent colorIntent = new Intent(MainActivity.this, ColorsActivity.class);
-                startActivity(colorIntent);
-            }
-        });
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
 
-        TextView phraseView = (TextView)findViewById(R.id.phrases);
-        phraseView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent phrasesIntent = new Intent(MainActivity.this, PhrasesActivity.class);
-                startActivity(phrasesIntent);
-            }
-        });
+//        / Find the tab layout that shows the tabs
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        //      by calling onPageTitle()
+        tabLayout.setupWithViewPager(viewPager);
+//        TextView numberView = (TextView)findViewById(R.id.numbers);
+//        numberView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent numberIntent = new Intent(MainActivity.this, NumbersActivity.class);
+//                startActivity(numberIntent);
+//            }
+//        });
+//
+//        TextView familyView = (TextView)findViewById(R.id.family);
+//        familyView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent familyIntent = new Intent(MainActivity.this, FamilyActivity.class);
+//                startActivity(familyIntent);
+//            }
+//        });
+//
+//        TextView colorView = (TextView)findViewById(R.id.colors);
+//        colorView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent colorIntent = new Intent(MainActivity.this, ColorsActivity.class);
+//                startActivity(colorIntent);
+//            }
+//        });
+//
+//        TextView phraseView = (TextView)findViewById(R.id.phrases);
+//        phraseView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent phrasesIntent = new Intent(MainActivity.this, PhrasesActivity.class);
+//                startActivity(phrasesIntent);
+//            }
+//        });
 
     }
 }
